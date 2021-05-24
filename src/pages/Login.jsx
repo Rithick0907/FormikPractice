@@ -1,7 +1,9 @@
 import { Formik } from "formik";
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { FormContainer } from "../styles/Login.styles";
+import FormInput from "../components/FormInput";
+import SubmitButton from "../components/SubmitButton";
 
 const Login = () => {
   return (
@@ -12,20 +14,16 @@ const Login = () => {
       }}
       onSubmit={(values) => console.log(values)}
     >
-      {({ handleChange, handleSubmit }) => (
+      {() => (
         <FormContainer>
-          <Form.Control
-            className="my-2"
-            placeholder="Email"
-            onChange={handleChange("email")}
-          ></Form.Control>
-          <Form.Control
+          <FormInput className="mb-2" name="email" placeholder="email" />
+          <FormInput
             className="mb-2"
+            name="password"
             placeholder="Password"
-            onChange={handleChange("password")}
             type="password"
-          ></Form.Control>
-          <Button onClick={handleSubmit}>Login</Button>
+          />
+          <SubmitButton name="Login" />
         </FormContainer>
       )}
     </Formik>

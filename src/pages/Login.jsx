@@ -1,9 +1,16 @@
 import { Formik } from "formik";
 import React from "react";
-import { Button } from "react-bootstrap";
+import * as Yup from "yup";
 import { FormContainer } from "../styles/Login.styles";
 import FormInput from "../components/FormInput";
 import SubmitButton from "../components/SubmitButton";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required("required").email("Invalid Email"),
+  password: Yup.string()
+    .required("required")
+    .min(8, "Minimum 8 characters needed")
+});
 
 const Login = () => {
   return (
@@ -12,6 +19,7 @@ const Login = () => {
         email: "",
         password: ""
       }}
+      validationSchema={validationSchema}
       onSubmit={(values) => console.log(values)}
     >
       {() => (

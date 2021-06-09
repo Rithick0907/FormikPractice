@@ -1,9 +1,6 @@
-import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { FormContainer } from "../styles/Login.styles";
-import FormInput from "../components/FormInput";
-import SubmitButton from "../components/SubmitButton";
+import { FormContainer, FormInput, SubmitButton } from "../components/form";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("required").email("Invalid Email"),
@@ -14,7 +11,7 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   return (
-    <Formik
+    <FormContainer
       initialValues={{
         email: "",
         password: ""
@@ -22,19 +19,15 @@ const Login = () => {
       validationSchema={validationSchema}
       onSubmit={(values) => console.log(values)}
     >
-      {() => (
-        <FormContainer>
-          <FormInput className="mb-2" name="email" placeholder="email" />
-          <FormInput
-            className="mb-2"
-            name="password"
-            placeholder="Password"
-            type="password"
-          />
-          <SubmitButton name="Login" />
-        </FormContainer>
-      )}
-    </Formik>
+      <FormInput className="mb-2" name="email" placeholder="email" />
+      <FormInput
+        className="mb-2"
+        name="password"
+        placeholder="Password"
+        type="password"
+      />
+      <SubmitButton title="Login" />
+    </FormContainer>
   );
 };
 
